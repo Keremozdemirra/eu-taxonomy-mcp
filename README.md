@@ -80,22 +80,26 @@ Through MCP, an agent asks the same with `nace_lookup("D35.11")` and
 
 ## Install
 
-As an MCP server in Claude Code:
+Nothing is published to PyPI; every install runs straight from GitHub. As an MCP server in Claude Code:
 
 ```
-claude mcp add eu-taxonomy -- uvx eu-taxonomy-mcp
+claude mcp add eu-taxonomy -- uvx --from git+https://github.com/Keremozdemirra/eu-taxonomy-mcp eu-taxonomy-mcp
 ```
 
-Any other MCP client: the command is `uvx eu-taxonomy-mcp` (stdio). On the command line:
+Any other MCP client: the command is `uvx --from git+https://github.com/Keremozdemirra/eu-taxonomy-mcp eu-taxonomy-mcp` (stdio).
+On the command line:
 
 ```
-uvx eu-taxonomy-mcp nace D35.11
-pipx run eu-taxonomy-mcp criteria 287 "Climate mitigation"
+uvx --from git+https://github.com/Keremozdemirra/eu-taxonomy-mcp eu-taxonomy-mcp nace D35.11
+uvx --from git+https://github.com/Keremozdemirra/eu-taxonomy-mcp eu-taxonomy-mcp criteria 287 "Climate mitigation"
 ```
+
+To install it instead: `pipx install git+https://github.com/Keremozdemirra/eu-taxonomy-mcp` or `pip install git+https://github.com/Keremozdemirra/eu-taxonomy-mcp`.
 
 From a checkout, standard library only, Python 3.9 or later:
 
 ```
+git clone https://github.com/Keremozdemirra/eu-taxonomy-mcp && cd eu-taxonomy-mcp && pip install .
 python3 eu_taxonomy_mcp.py nace D35.11                         # command line
 claude mcp add eu-taxonomy -- python3 /path/to/eu_taxonomy_mcp.py   # MCP server
 ```
@@ -261,11 +265,11 @@ away to accept one). The live run from 2026-09-24:
 
 ```
 $ python3 eu_taxonomy_mcp.py refresh
-refresh: https://webgate.ec.europa.eu/sft/api/v1/en -> /home/user/rota/projects/105-eu-taxonomy-mcp/data
+refresh: https://webgate.ec.europa.eu/sft/api/v1/en -> data
 refresh: 3 requests (bulk), 2,612,100 bytes, 14.5 s
 snapshot: 16 sectors, 151 activities, 242 criteria sets, 1210 DNSH entries, 6 objectives; retrieved 2026-09-24
 changes against the previous snapshot: no change in activities or criteria
-wrote /home/user/rota/projects/105-eu-taxonomy-mcp/data/taxonomy.json (2,239,085 bytes, sha256 f813701e7f42eddaa17c28549395b2e8cbeb44ebeaa5367e4b2a03b454a2ec9d) and SOURCES.md
+wrote data/taxonomy.json (2,239,085 bytes, sha256 f813701e7f42eddaa17c28549395b2e8cbeb44ebeaa5367e4b2a03b454a2ec9d) and SOURCES.md
 ```
 
 Three runs that day wrote the same bytes. `refresh --nace` reads the two acts' English text from
@@ -276,11 +280,11 @@ floor). The live run:
 
 ```
 $ python3 eu_taxonomy_mcp.py refresh --nace
-refresh: https://publications.europa.eu/resource/celex/ -> /home/user/rota/projects/105-eu-taxonomy-mcp/data
+refresh: https://publications.europa.eu/resource/celex/ -> data
 refresh --nace: 2 requests, 1,760,621 bytes, 4.4 s
 NACE Rev. 2: 21 sections, 88 divisions, 272 groups, 615 classes
 NACE Rev. 2.1: 22 sections, 87 divisions, 287 groups, 651 classes
-wrote /home/user/rota/projects/105-eu-taxonomy-mcp/data/nace.json (124,254 bytes, sha256 642a19add78c8149049337480a42baadbc8962597a95f1f63482e8d6d91a8fbb) and SOURCES.md
+wrote data/nace.json (124,254 bytes, sha256 642a19add78c8149049337480a42baadbc8962597a95f1f63482e8d6d91a8fbb) and SOURCES.md
 ```
 
 In a checkout, `refresh` rewrites `data/`. An installed package never rewrites its bundled copy:

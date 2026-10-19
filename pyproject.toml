@@ -30,7 +30,7 @@ eu-taxonomy-mcp = "eu_taxonomy_mcp:main"
 [tool.setuptools]
 py-modules = ["eu_taxonomy_mcp", "eu_taxonomy_mcp_refresh"]
 # data/ ships inside the wheel as the package eu_taxonomy_mcp_data, so the bundled
-# snapshot works offline after `uvx eu-taxonomy-mcp` or `pip install`.
+# snapshot works offline after `uvx --from` or `pip install`.
 packages = ["eu_taxonomy_mcp_data"]
 package-dir = { "eu_taxonomy_mcp_data" = "data" }
 

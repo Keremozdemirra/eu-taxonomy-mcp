@@ -4,7 +4,5 @@
   "title": "EU Taxonomy MCP",
   "description": "EU Taxonomy activities, NACE codes and screening criteria from the Commission's Navigator",
   "repository": {"url": "https://github.com/Keremozdemirra/eu-taxonomy-mcp", "source": "github"},
-  "version": "0.1.0",
-  "packages": [{"registryType": "pypi", "identifier": "eu-taxonomy-mcp", "version": "0.1.0",
-                "runtimeHint": "uvx", "transport": {"type": "stdio"}}]
+  "version": "0.1.0"
 }

@@ -16,7 +16,7 @@ and stdout, one message per line. Answers never touch the network; only
 
 Run it:      python3 eu_taxonomy_mcp.py                 (MCP server on stdio)
              python3 eu_taxonomy_mcp.py nace D35.11     (command line)
-Claude Code: claude mcp add eu-taxonomy -- uvx eu-taxonomy-mcp
+Claude Code: claude mcp add eu-taxonomy -- uvx --from git+https://github.com/Keremozdemirra/eu-taxonomy-mcp eu-taxonomy-mcp
 """
 from __future__ import annotations
 
