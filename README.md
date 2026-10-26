@@ -172,7 +172,7 @@ whose Article 1 replaces that Annex I). Then:
   other.
 - **In neither table**, or with a section letter that fits neither revision (`35.19`, `C35.11`):
   refused with an error that says why. The tool does not guess.
-- **Section letters come from the tables**, not from the source: `84` is read as O84.
+- **Section letters come from the tables**: `84` is read as O84.
 
 The delegated acts write some codes in forms NACE Rev. 2 does not use, and the Navigator repeats
 them. They are read as NACE Rev. 2 codes, and the answer says so next to each one: `A2` (A02),
@@ -180,7 +180,7 @@ them. They are read as NACE Rev. 2 codes, and the answer says so next to each on
 and `E42.99` for "Depollution and dismantling of end-of-life products" (division 42 is in section F).
 
 The delegated acts give NACE codes as examples: the activity descriptions say an activity "could be
-associated with several NACE codes, in particular ...". The description, not the code, sets the
+associated with several NACE codes, in particular ...". The description sets the
 scope. 8 of the 151 activities list no NACE code at all (for example "Storage of electricity");
 `nace_lookup` lists them with every answer.
 
@@ -201,7 +201,7 @@ scope. 8 of the 151 activities list no NACE code at all (for example "Storage of
 `--json` prints what the MCP tool returns. `--snapshot PATH` (or the environment variable
 `EU_TAXONOMY_MCP_SNAPSHOT`) reads another snapshot, such as one written by `refresh --out`; a
 `nace.json` next to it is used, else the bundled one. Numbers outside their range (`--limit -5`,
-`--max-chars` below 0) are refused, not replaced. Exit codes: 0 answer, 1 nothing found, 2 error
+`--max-chars` below 0) are refused. Exit codes: 0 answer, 1 nothing found, 2 error
 (bad input, unreadable snapshot, failed refresh).
 
 ## Data sources and licences
@@ -260,8 +260,8 @@ needs, store all text as served, and are written with sorted keys and a fixed or
 2026-09-24). Every response is checked. It exits with code 2 and writes nothing on an HTTP error, an
 empty, `null`, non-UTF-8 or non-JSON body, a changed payload shape or a timeout, and also when the
 result has no criteria sets, or fewer than half the activities or criteria sets of the previous
-snapshot (the half is this tool's choice: a probable fault, not a real change; move the old file
-away to accept one). The live run from 2026-09-24:
+snapshot (the half is this tool's choice: a drop that large is read as a probable fault; move the old file
+away to accept it as a real change). The live run from 2026-09-24:
 
 ```
 $ python3 eu_taxonomy_mcp.py refresh
@@ -383,5 +383,5 @@ content); the NACE tables are Official Journal text, re-used under Decision 2011
   Navigator site; the tool links to them but does not include them.
 - Not live. Answers are as of the snapshot date shown with each one; run `refresh` for a newer one.
 - Not a NACE classifier or a NACE Rev. 2 to Rev. 2.1 converter. NACE codes in the delegated acts
-  are examples, not a test of eligibility.
+  are examples, and a matching code does not make an activity eligible.
 - Not a Commission product, and not affiliated with the European Commission.
